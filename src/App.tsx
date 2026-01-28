@@ -56,7 +56,6 @@ function App() {
         <div className="container nav-container">
           <a href="#" className="nav-logo">
             <img src="/omnipay-logo-big.png" alt="OmniPay Solutions" />
-            <span>OmniPay Solutions</span>
           </a>
 
           <ul className={`nav-links ${mobileMenuOpen ? "open" : ""}`}>
@@ -739,7 +738,6 @@ function App() {
             <div className="footer-brand">
               <a href="#" className="footer-logo">
                 <img src="/omnipay-logo-big.png" alt="OmniPay Solutions" />
-                <span>OmniPay Solutions</span>
               </a>
               <p className="footer-description">{t.footer.description}</p>
             </div>
@@ -823,7 +821,6 @@ function App() {
               </ul>
 
               <div className="footer-certificates">
-                <img src="/isms_srp.jpg" alt="ISMS Certificate" />
                 <img
                   src="/znak_usaglasenosti_9001_27001.png"
                   alt="Compliance Mark"
