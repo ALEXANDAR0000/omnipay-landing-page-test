@@ -93,7 +93,8 @@ export const translations = {
     contact: {
       label: "Kontakt",
       title: "Kontaktirajte nas",
-      description: "Za sva dodatna pitanja stojimo vam na raspolaganju",
+      description: "Prisutni smo na dve lokacije i stojimo vam na raspolaganju.",
+      emailIntro: "Za sva pitanja pišite nam na:",
       email: "Email:",
     },
     // Footer
@@ -253,8 +254,8 @@ export const translations = {
     contact: {
       label: "Contact",
       title: "Contact us",
-      description:
-        "If you have any additional questions, please feel free to contact us",
+      description: "We are present at two locations and are at your disposal.",
+      emailIntro: "For all inquiries, write to us at:",
       email: "Email:",
     },
     // Footer

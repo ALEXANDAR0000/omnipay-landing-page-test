@@ -5,6 +5,7 @@ import type { Language } from "./translations";
 
 function App() {
   const [scrolled, setScrolled] = useState(false);
+  const [showBackToTop, setShowBackToTop] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [termsModalOpen, setTermsModalOpen] = useState(false);
   const [qualityModalOpen, setQualityModalOpen] = useState(false);
@@ -15,10 +16,31 @@ function App() {
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
+      setShowBackToTop(window.scrollY > 400);
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+
+    document
+      .querySelectorAll(".animate-fade-in-up, .animate-fade-in")
+      .forEach((el) => observer.observe(el));
+
+    return () => observer.disconnect();
   }, []);
 
   const toggleMobileMenu = () => {
@@ -705,6 +727,7 @@ function App() {
           </div>
 
           <div className="contact-info animate-fade-in-up">
+            <p className="contact-email-intro">{t.contact.emailIntro}</p>
             <div className="contact-item">
               <svg
                 width="24"
@@ -720,11 +743,6 @@ function App() {
                   d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
                 />
               </svg>
-              <span
-                style={{ color: "var(--text-secondary)", marginRight: "8px" }}
-              >
-                {t.contact.email}
-              </span>
               <a href="mailto:office@omnipay.rs">office@omnipay.rs</a>
             </div>
           </div>
@@ -905,6 +923,17 @@ function App() {
           </div>
         </div>
       )}
+
+      {/* Back to Top */}
+      <button
+        className={`back-to-top ${showBackToTop ? "visible" : ""}`}
+        onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+        aria-label="Nazad na vrh"
+      >
+        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
+        </svg>
+      </button>
 
       {/* Quality Policy Modal */}
       {qualityModalOpen && (
